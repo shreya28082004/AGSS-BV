@@ -2,7 +2,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import Logo from "../assets/logo.png";
 import gateImg from "../assets/gate.png";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import SecureEntryVideo from "../assets/Secure_Entry_Demo.mp4";
+import NotifyVideo from "../assets/Notify.mp4"; 
+import VehicleVideo from "../assets/veh.mp4";
 export default function HomePage() {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [registerOpen, setRegisterOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -86,9 +93,13 @@ export default function HomePage() {
       <a href="#" className="font-semibold hover:text-cream-200 transition">
         Home
       </a>
-      <a href="#" className="font-semibold hover:text-cream-200 transition">
-        About
-      </a>
+      
+      <Link
+  to="/about"
+  className="font-semibold hover:text-cream-200 transition"
+>
+  About
+</Link>
 
       {/* Register Dropdown */}
       <div className="relative" ref={registerRef}>
@@ -161,12 +172,13 @@ export default function HomePage() {
     className="hidden md:block px-3 py-1 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-cream-200"
   />
 </nav>
+{/*background img*/}
 <div className="w-full h-[680px] bg-cover bg-center bg-no-repeat relative flex items-center justify-center"
       style={{ backgroundImage: `url(${gateImg})` }}
     >
       <div className="absolute inset-0 bg-black/50"></div>
       </div>
-
+{/*back img end*/}
       {/* Left Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-brown/95 text-white shadow-lg p-5 space-y-4 transform transition-transform duration-300 z-50 ${
@@ -195,7 +207,7 @@ export default function HomePage() {
           Close
         </button>
       </div>
-        
+       {/*sidebar ends*/} 
       {/* Hero / CTA Section */}
       <main className="p-10 md:p-20 text-brown">
         <div className="bg-cream rounded-3xl shadow-2xl p-10 text-center space-y-6 mt-10 transform hover:scale-105 transition-transform duration-500">
@@ -208,36 +220,43 @@ export default function HomePage() {
           </button>
         </div>
 
-        {/* Features / Info Cards */}
-        <div className="mt-16 grid md:grid-cols-3 gap-10">
-          {[
-            {
-              title: "Secure Entry",
-              desc: "Biometric and ID-based student and visitor verification.",
-              icon: "🔒",
-            },
-            {
-              title: "Smart Notifications",
-              desc: "Parents get instant alerts when students exit or enter campus.",
-              icon: "📲",
-            },
-            {
-              title: "Vehicle Management",
-              desc: "Automated gate control and whitelist management for vehicles.",
-              icon: "🚗",
-            },
-          ].map((feature, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-500 text-center"
-            >
-              <div className="text-5xl mb-4">{feature.icon}</div>
-              <h2 className="text-2xl font-bold mb-2">{feature.title}</h2>
-              <p>{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </main>
+       {/* Features / Info Cards */}
+<div className="mt-16 grid md:grid-cols-3 gap-10">
+  {[
+    {
+      title: "Secure Entry",
+      desc: "Biometric and ID-based student and visitor verification.",
+      icon: "🔒",
+      link: "/secure-entry",
+      video: SecureEntryVideo
+    },
+    {
+      title: "Smart Notifications",
+      desc: "Parents get instant alerts when students exit or enter campus.",
+      icon: "📲",
+      link: "/notify",
+      video: NotifyVideo
+    },
+    {
+      title: "Vehicle Management",
+      desc: "Automated gate control and whitelist management for vehicles.",
+      icon: "🚗",
+      link: "/vehicle",
+      video: VehicleVideo
+    },
+  ].map((feature, idx) => (
+    <div
+      key={idx}
+      onClick={() => feature.link && navigate(feature.link)} // Navigate if link exists
+      className="cursor-pointer bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-500 text-center"
+    >
+      <div className="text-5xl mb-4">{feature.icon}</div>
+      <h2 className="text-2xl font-bold mb-2">{feature.title}</h2>
+      <p>{feature.desc}</p>
+    </div>
+  ))}
+</div>
+      </main> 
       {/* Footer */}
 <footer className="bg-gradient-to-r from-brown to-brown/90 text-cream mt-16 relative overflow-hidden">
   {/* Decorative subtle shapes */}
