@@ -1,11 +1,9 @@
-import AddStudent from "./AddStudent";
+// src/App.js
+import React from "react";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  return (
-    <div>
-      <AddStudent />
-    </div>
-  );
+  return <HomePage />;
 }
 
 export default App;
