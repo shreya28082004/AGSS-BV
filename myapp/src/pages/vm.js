@@ -4,7 +4,9 @@ import Logo from "../assets/logo.png";
 import gateImg from "../assets/gate.png";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import HeaderNavbar from "../components/HeaderNavbar";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 export default function NotifyPage() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -1,11 +1,12 @@
-import videoFile from "../assets/Secure_Entry_Demo.mp4";
+// src/pages/HomePage.js
 import React, { useState, useEffect, useRef } from "react";
-import Logo from "../assets/logo.png";
-import gateImg from "../assets/gate.png";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import HeaderNavbar from "../components/HeaderNavbar";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
+import videoFile from "../assets/Secure_Entry_Demo.mp4";
 
-export default function HomePage() {
+export default function SecurePage() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [registerOpen, setRegisterOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function HomePage() {
   const registerRef = useRef(null);
   const moreRef = useRef(null);
 
+  // Close dropdowns on outside click
   useEffect(() => {
     function handleClickOutside(event) {
       if (registerRef.current && !registerRef.current.contains(event.target)) {
@@ -28,291 +30,81 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans bg-gradient-to-b from-cream to-cream/90">
-      {/* Top Hero Section */}
-      <header className="relative bg-brown bg-opacity-90">
-        
-        <div className="max-w-7xl mx-auto flex items-center px-6 py-10 md:py-6 space-x-32">
-          {/* Big Logo */}
-          <img
-            src={Logo}
-            alt="Logo"
-            className="h-28 w-28 md:h-36 md:w-36 rounded-full border-4 border-cream shadow-lg transform hover:scale-105 transition-transform duration-500"
-          />
-      {/* Heading */}
-<div className="flex flex-col items-center md:items-start relative">
-  <h1
-    className="
-      text-6xl md:text-8xl font-extrabold text-cream tracking-widest
-      text-center md:text-left
-      font-[Bebas\ Neue]
-      relative
-      transition-transform duration-500 hover:scale-105
-    "
-    style={{
-      textShadow: `
-        2px 2px 0px #8B6B4F,
-        4px 4px 0px #7A5940,
-        6px 6px 10px rgba(107,79,59,0.5)
-      `
-    }}
-  >
-    RAKSHAPEETH
-    {/* Subtle shiny overlay */}
-    <span className="
-      absolute top-0 left-0 w-full h-full
-      bg-gradient-to-r from-white/40 via-white/10 to-white/40
-      opacity-30 animate-[shine_2s_linear_infinite]
-      pointer-events-none
-    "></span>
-  </h1>
-
-  {/* Optional subtle underline */}
-  <div className="mt-2 w-32 h-1 rounded-full bg-cream/70 animate-pulse"></div>
-</div>
-
-        </div>
-      </header>
-
-      {/* Navbar */}
-<nav className="sticky top-0 w-full bg-brown text-white flex justify-between items-center px-6 py-3 shadow-lg z-50">
-  <div className="flex items-center space-x-10">
-    {/* Sidebar Button */}
-    <button
-      onClick={() => setSidebarOpen(true)}
-      className="h-10 w-10 bg-cream text-brown font-bold flex items-center justify-center rounded-md hover:bg-cream-200 transition"
-    >
-      ▣
-    </button>
-
-    {/* Desktop Links */}
-    <div className="hidden md:flex space-x-8">
-      <Link to="/" className="font-semibold hover:text-cream-200 transition">
-        Home
-      </Link>
-      <Link to="/about" className="font-semibold hover:text-cream-200 transition">
-        About
-      </Link>
-
-      {/* Register Dropdown */}
-      <div className="relative" ref={registerRef}>
-        <button
-          onClick={() => setRegisterOpen(!registerOpen)}
-          className="font-semibold hover:text-cream-200 transition"
-        >
-          Register ▾
-        </button>
-        <div
-          className={`absolute mt-2 rounded shadow-lg w-32 bg-white text-brown overflow-hidden transition-all duration-300 transform origin-top ${
-            registerOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
-          }`}
-        >
-          <Link
-            to="/register-guard"
-            className="block px-4 py-2 hover:bg-cream-200 hover:text-brown-900 transition"
-          >
-            Guard
-          </Link>
-          <Link
-            to="/register-parent"
-            className="block px-4 py-2 hover:bg-cream-200 hover:text-brown-900 transition"
-          >
-            Parent
-          </Link>
-        </div>
-      </div>
-
-      {/* More Dropdown */}
-      <div className="relative" ref={moreRef}>
-        <button
-          onClick={() => setMoreOpen(!moreOpen)}
-          className="font-semibold hover:text-cream-200 transition"
-        >
-          More ▾
-        </button>
-        <div
-          className={`absolute mt-2 rounded shadow-lg w-40 bg-white text-brown overflow-hidden transition-all duration-300 transform origin-top ${
-            moreOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
-          }`}
-        >
-          <Link
-            to="/feedback"
-            className="block px-4 py-2 hover:bg-cream-200 hover:text-brown-900 transition"
-          >
-            Feedback
-          </Link>
-          <Link
-            to="/customer-care"
-            className="block px-4 py-2 hover:bg-cream-200 hover:text-brown-900 transition"
-          >
-            Customer Care
-          </Link>
-          <Link
-            to="/contact"
-            className="block px-4 py-2 hover:bg-cream-200 hover:text-brown-900 transition"
-          >
-            Contact Us
-          </Link>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* Search input */}
-  <input
-    type="text"
-    placeholder="Search..."
-    className="hidden md:block px-3 py-1 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-cream-200"
-  />
-</nav>
-      {/* Left Sidebar */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-brown/95 text-white shadow-lg p-5 space-y-4 transform transition-transform duration-300 z-50 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <h2 className="text-2xl font-bold mb-6 border-b border-cream-200 pb-2">
-          Menu
-        </h2>
-        <a className="block py-2 px-3 rounded hover:bg-cream-200 hover:text-brown-900 transition" href="#">
-          Admin
-        </a>
-        <a className="block py-2 px-3 rounded hover:bg-cream-200 hover:text-brown-900 transition" href="#">
-          Guard
-        </a>
-        <a className="block py-2 px-3 rounded hover:bg-cream-200 hover:text-brown-900 transition" href="#">
-          Parent
-        </a>
-        <a className="block py-2 px-3 rounded hover:bg-cream-200 hover:text-brown-900 transition" href="#">
-          Pre-Visit Form
-        </a>
-        <button
-          onClick={() => setSidebarOpen(false)}
-          className="mt-6 px-4 py-2 bg-cream text-brown rounded hover:bg-cream-200 transition"
-        >
-          Close
-        </button>
-      </div>
-       {/*sidebar ends*/} 
-      <main className="p-6 md:p-12 max-w-7xl mx-auto bg-gradient-to-br from-cream/95 to-cream/90 rounded-3xl shadow-2xl overflow-hidden relative">
-  {/* Decorative floating shapes */}
-  <div className="absolute -top-10 -left-10 w-32 h-32 bg-brown/10 rounded-full blur-3xl animate-pulse-slow"></div>
-  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-brown/10 rounded-full blur-3xl animate-pulse-slow"></div>
-
-  <div className="flex flex-col md:flex-row items-center md:items-start gap-12 relative z-10">
-
-    {/* Video */}
-    <div className="w-full md:w-1/2 flex justify-center">
-      <video
-        src={videoFile}
-        controls
-        className="w-full max-w-[350px] md:max-w-full aspect-[9/16] rounded-3xl shadow-2xl border-4 border-cream hover:scale-105 transform transition-all duration-500"
+    <div className="min-h-screen font-sans bg-gradient-to-b from-cream to-cream/90 relative">
+      {/* Header + Navbar */}
+      <HeaderNavbar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        registerOpen={registerOpen}
+        setRegisterOpen={setRegisterOpen}
+        moreOpen={moreOpen}
+        setMoreOpen={setMoreOpen}
+        registerRef={registerRef}
+        moreRef={moreRef}
       />
-    </div>
 
-    {/* Description */}
-    <div className="w-full md:w-1/2 text-brown space-y-6 text-justify">
-      <h2 className="text-3xl md:text-4xl font-extrabold tracking-wider text-center md:text-left relative">
-        Secure Entry
-        {/* Shiny underline effect */}
-        <span className="block h-1 w-24 bg-gradient-to-r from-brown to-brown/70 rounded-full mt-2 mx-auto md:mx-0 animate-pulse-slow"></span>
-      </h2>
+      {/* Sidebar Overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity"
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
 
-      <p className="text-lg md:text-xl leading-relaxed text-brown/90 first-letter:text-6xl first-letter:font-bold first-letter:text-brown/80 first-letter:mr-2">
-        At <span className="font-semibold">Banasthali Vidyapith</span>, the <span className="font-semibold text-brown">Automated Gate Security System (AGSS-BV)</span> ensures a <span className="italic text-brown/80">safe, seamless, and futuristic</span> entry experience. Only registered students and authorized personnel can access the campus, making security both robust and elegant.
-      </p>
+      {/* Sidebar */}
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      <p className="text-lg md:text-xl leading-relaxed text-brown/90">
-        When a student approaches, their <span className="font-semibold">ID card</span> is instantly scanned to retrieve their profile from our secure database. This ensures that the authentication process begins only for verified individuals.
-      </p>
+      {/* Main Content */}
+      <main className="p-6 md:p-12 max-w-7xl mx-auto bg-gradient-to-br from-cream/95 to-cream/90 rounded-3xl shadow-2xl overflow-hidden relative mt-10">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-12 relative z-10">
+          {/* Video */}
+          <div className="w-full md:w-1/2 flex justify-center">
+            <video
+              src={videoFile}
+              controls
+              className="w-full max-w-[350px] md:max-w-full aspect-[9/16] rounded-3xl shadow-2xl border-4 border-cream hover:scale-105 transform transition-all duration-500"
+            />
+          </div>
 
-      <p className="text-lg md:text-xl leading-relaxed text-brown/90">
-        Next, a state-of-the-art <span className="font-semibold">iris scan</span> is performed. The captured pattern is precisely matched against stored biometric templates, adding a <span className="italic text-brown/80">second layer of ultra-secure verification</span>. Access is granted only when both <span className="font-semibold">ID and biometric credentials</span> are verified.
-      </p>
+          {/* Description */}
+          <div className="w-full md:w-1/2 text-brown space-y-6 text-justify">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-wider text-center md:text-left relative">
+              Secure Entry
+              <span className="block h-1 w-24 bg-gradient-to-r from-brown to-brown/70 rounded-full mt-2 mx-auto md:mx-0 animate-pulse-slow"></span>
+            </h2>
 
-      <p className="text-lg md:text-xl leading-relaxed text-brown/90">
-        This <span className="font-semibold text-brown">dual-layer authentication</span> system not only elevates campus security but also provides a <span className="italic text-brown/80">fast, contactless, and reliable</span> experience. Combining automation efficiency with biometric precision, AGSS-BV ensures safe campus access while maintaining strict control.
-      </p>
+            <p className="text-lg md:text-xl leading-relaxed text-brown/90 first-letter:text-6xl first-letter:font-bold first-letter:text-brown/80 first-letter:mr-2">
+              At <span className="font-semibold">Banasthali Vidyapith</span>, the <span className="font-semibold text-brown">Automated Gate Security System (AGSS-BV)</span> ensures a <span className="italic text-brown/80">safe, seamless, and futuristic</span> entry experience.
+            </p>
 
-      <p className="text-lg md:text-xl leading-relaxed text-brown/90">
-        Watch the video to see a user being verified, the gate opening automatically, logs recorded instantly, and parents receiving <span className="italic text-brown/80">real-time notifications</span> about student entry and exit. It’s <span className="font-semibold text-brown">security reimagined</span>.
-      </p>
+            <p className="text-lg md:text-xl leading-relaxed text-brown/90">
+              When a student approaches, their <span className="font-semibold">ID card</span> is instantly scanned to retrieve their profile from our secure database.
+            </p>
 
-      <button
-        onClick={() => navigate("/")}
-        className="mt-6 px-8 py-3 bg-brown text-cream rounded-2xl shadow-lg hover:-translate-y-1 hover:shadow-2xl hover:bg-gradient-to-r from-brown/90 to-brown/70 transition-all duration-300 font-semibold"
-      >
-        ← Back to Home
-      </button>
-    </div>
-  </div>
-</main>
+            <p className="text-lg md:text-xl leading-relaxed text-brown/90">
+              Next, a state-of-the-art <span className="font-semibold">iris scan</span> is performed, adding a <span className="italic text-brown/80">second layer of ultra-secure verification</span>.
+            </p>
 
-      <footer className="bg-gradient-to-r from-brown to-brown/90 text-cream mt-16 relative overflow-hidden">
-  {/* Decorative subtle shapes */}
-  <div className="absolute -top-10 -left-10 w-32 h-32 bg-cream/10 rounded-full blur-3xl animate-pulse-slow"></div>
-  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-cream/10 rounded-full blur-3xl animate-pulse-slow"></div>
+            <p className="text-lg md:text-xl leading-relaxed text-brown/90">
+              This <span className="font-semibold text-brown">dual-layer authentication</span> system ensures fast, contactless, and reliable access while maintaining strict control.
+            </p>
 
-  <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-8 relative z-10">
-    {/* About / Branding */}
-    <div className="space-y-4">
-      <h2 className="text-3xl font-extrabold tracking-wide">RAKSHAPEETH</h2>
-      <p className="text-cream/80">
-        Automated Gate Security System for Banasthali Vidyapith.
-      </p>
-    </div>
+            <p className="text-lg md:text-xl leading-relaxed text-brown/90">
+              Watch the video to see the verification process, automatic gate opening, and real-time notifications to parents.
+            </p>
 
-    {/* Quick Links */}
-    <div className="space-y-2">
-      <h3 className="font-semibold text-lg">Quick Links</h3>
-      <ul className="space-y-1">
-        <li>
-          <a href="#" className="hover:text-yellow-300 transition-all duration-300">Home</a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-yellow-300 transition-all duration-300">About</a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-yellow-300 transition-all duration-300">Register</a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-yellow-300 transition-all duration-300">Contact Us</a>
-        </li>
-      </ul>
-    </div>
+            <button
+              onClick={() => navigate("/")}
+              className="mt-6 px-8 py-3 bg-brown text-cream rounded-2xl shadow-lg hover:-translate-y-1 hover:shadow-2xl hover:bg-gradient-to-r from-brown/90 to-brown/70 transition-all duration-300 font-semibold"
+            >
+              ← Back to Home
+            </button>
+          </div>
+        </div>
+      </main>
 
-    {/* Contact / Social */}
-    <div className="space-y-2">
-      <h3 className="font-semibold text-lg">Connect</h3>
-      <p>Email: info@rakshapeeth.com</p>
-      <p>Phone: +91 12345 67890</p>
-      <div className="flex space-x-4 mt-3">
-        <a
-          href="#"
-          className="p-2 bg-cream/20 rounded-full hover:bg-cream/50 text-brown shadow-lg transition-all duration-300 hover:scale-110"
-        >
-          🐦
-        </a>
-        <a
-          href="#"
-          className="p-2 bg-cream/20 rounded-full hover:bg-cream/50 text-brown shadow-lg transition-all duration-300 hover:scale-110"
-        >
-          🔗
-        </a>
-        <a
-          href="#"
-          className="p-2 bg-cream/20 rounded-full hover:bg-cream/50 text-brown shadow-lg transition-all duration-300 hover:scale-110"
-        >
-          📘
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div className="border-t border-cream/40 mt-6 py-4 text-center text-cream/70 relative z-10">
-    © {new Date().getFullYear()} RAKSHAPEETH. All rights reserved.
-  </div>
-</footer>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

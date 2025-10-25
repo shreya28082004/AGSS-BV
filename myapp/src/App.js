@@ -5,6 +5,8 @@ import SecureEntryPage from "./pages/SecureEntryPage";
 import NotifyPage from "./pages/nm"; // Notification video page
 import VehiclePage from "./pages/vm";
 import AboutPage from "./pages/AboutPage";
+import PrPage from "./pages/ParentReg";
+import GrPage from "./pages/GuardReg";
 function App() {
   return (
     <Router>
@@ -14,6 +16,8 @@ function App() {
         <Route path="/notify" element={<NotifyPage />} /> {/* New route */}
         <Route path="/vehicle" element={<VehiclePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/parent-registration" element={<PrPage />} />
+        <Route path="/guard-registration" element={<GrPage />} />
       </Routes>
     </Router>
   );
