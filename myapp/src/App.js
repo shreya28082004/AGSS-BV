@@ -7,6 +7,7 @@ import VehiclePage from "./pages/vm";
 import AboutPage from "./pages/AboutPage";
 import PrPage from "./pages/ParentReg";
 import GrPage from "./pages/GuardReg";
+
 import ContactUs from "./pages/ContactUs";
 import PreVisit from "./pages/PreVisit";
 import Setting from "./pages/Setting";
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/secure-entry" element={<SecureEntryPage />} />
-        <Route path="/notify" element={<NotifyPage />} /> {/* New route */}
+        <Route path="/notify" element={<NotifyPage />} />
         <Route path="/vehicle" element={<VehiclePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/parent-registration" element={<PrPage />} />
@@ -27,6 +28,12 @@ function App() {
         <Route path="/settings" element={<Setting />} />
         <Route path="/CustomerCare" element={<CustomerCare />} />        
 
+        <Route path="/feedback" element={<FeedbackPage />} /> {/* Corrected */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/settings" element={<SettingPage />} />
+        <Route path="/contact-us" element={<ContactUsPage />} /> {/* Added */}
+        <Route path="/customer-care" element={<CustomerCarePage />} />
+        <Route path="/pre-visit" element={<PreVisit />} />
 
       </Routes>
     </Router>
