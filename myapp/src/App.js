@@ -8,6 +8,8 @@ import AboutPage from "./pages/AboutPage";
 import PrPage from "./pages/ParentReg";
 import GrPage from "./pages/GuardReg";
 import ContactUs from "./pages/ContactUs";
+import PreVisit from "./pages/PreVisit";
+import Setting from "./pages/Setting";
 function App() {
   return (
     <Router>
@@ -20,6 +22,10 @@ function App() {
         <Route path="/parent-registration" element={<PrPage />} />
         <Route path="/guard-registration" element={<GrPage />} />
         <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/pre-visit" element={<PreVisit />} />
+        <Route path="/settings" element={<Setting />} />
+
+
       </Routes>
     </Router>
   );
