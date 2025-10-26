@@ -28,6 +28,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen font-sans bg-gradient-to-b from-cream to-cream/90 flex flex-col">
+      {/*copy start*/}
       <HeaderNavbar
                    sidebarOpen={sidebarOpen}
                    setSidebarOpen={setSidebarOpen}
@@ -49,7 +50,7 @@ export default function AboutPage() {
            
                  {/* Sidebar */}
                  <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
+{/*copy end*/}
       {/* Main Content */}
       <main className="flex-grow max-w-7xl mx-auto px-6 py-16 text-brown">
         <h2 className="text-4xl md:text-5xl mb-8 text-center text-brown/90 underline decoration-cream/60">
