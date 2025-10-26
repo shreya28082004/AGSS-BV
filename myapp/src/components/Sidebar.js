@@ -78,7 +78,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
         {/* Sidebar Links */}
         {[
           { name: "Login", icon: "🔐", path: "/login" },
-          { name: "Pre-Visit Form", icon: "📝", path: "/pre-visit-form" },
+          { name: "Pre-Visit Form", icon: "📝", path: "/pre-visit" },
           { name: "Feedback", icon: "💬", path: "/feedback" },
           { name: "Settings", icon: "⚙️", path: "/settings" },
           { name: "Logout", icon: "🚪", path: "/logout" },
