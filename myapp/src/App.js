@@ -7,6 +7,7 @@ import VehiclePage from "./pages/vm";
 import AboutPage from "./pages/AboutPage";
 import PrPage from "./pages/ParentReg";
 import GrPage from "./pages/GuardReg";
+import ContactUs from "./pages/ContactUs";
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/parent-registration" element={<PrPage />} />
         <Route path="/guard-registration" element={<GrPage />} />
+        <Route path="/ContactUs" element={<ContactUs />} />
       </Routes>
     </Router>
   );
