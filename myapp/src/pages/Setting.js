@@ -1,63 +1,36 @@
 import React, { useState } from "react";
-import Logo from "../assets/logo.png";
-
 import HeaderNavbar from "../components/HeaderNavbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 
-export default function CustomerCarePage() {
+export default function SettingsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  // Profile settings state
+  
+  const [username, setUsername] = useState("johndoe");
+  const [mobile, setMobile] = useState("+91 9876543210");
+  const [email, setEmail] = useState("john@example.com");
+  const [password, setPassword] = useState("");
+  
 
-  const faqs = [
-    {
-      question: "How do I register on the website?",
-      answer:
-        "To register, visit the Register page and fill in the required details. Once submitted, your account will be verified and activated. If you face issues, ensure you have a stable internet connection or contact Customer Care."
-    },
-    {
-      question: "How do I log in if I’m facing issues?",
-      answer:
-        "Use the Login page with your registered credentials. If login fails, double-check your username and password, or use the 'Forgot Password' option. Persistent issues may be due to cache or network problems."
-    },
-    {
-      question: "How do I fill out the Pre-Visit Form, and what should I do if it doesn’t work?",
-      answer:
-        "The Pre-Visit Form is on both the Visitor and Parent pages. Fill all details and submit. If it doesn’t load, it may be a network issue — please contact Customer Care."
-    },
-    {
-      question: "What should I do if there’s a problem with the iris scan or number plate scanning system?",
-      answer:
-        "Check that the scanning device is clean, connected, and aligned. If issues persist, contact Technical Support via Customer Care."
-    },
-    {
-      question: "How can I send an alert to the admin?",
-      answer:
-        "Authorized users can send alerts to the admin from their dashboard. If your alert isn’t sending, verify your connection and contact support."
-    },
-    {
-      question: "What should I do if there’s an issue with the parent notification system?",
-      answer:
-        "If parents aren’t receiving notifications, verify their contact info and your connection. If the issue continues, report it via Customer Care."
-    },
-    {
-      question: "Who are authorized users, and what are their responsibilities?",
-      answer:
-        "Authorized users include admin, parents, and daily visitors. They must protect their credentials and report suspicious activity."
-    },
-    {
-      question: "How can I view expected visitors?",
-      answer:
-        "Guards and authorized staff can view expected visitors under the 'View Visitors' option in the Guard Page sidebar."
-    }
-  ];
+  // Notification settings state
+  const [notificationChannels, setNotificationChannels] = useState({
+    sms: false,
+    email: true,
+  });
+  const [notificationLanguage, setNotificationLanguage] = useState("English");
+
+  // Privacy & Security state
+  const [profileVisibility, setProfileVisibility] = useState("Everyone");
+  const [contactPermissions, setContactPermissions] = useState("Everyone");
+
+  // Language & Accessibility
+  const [appLanguage, setAppLanguage] = useState("English");
+  const [dateFormat, setDateFormat] = useState("DD/MM/YYYY");
 
   return (
-    <div className="font-sans bg-gradient-to-b from-cream to-cream/90 relative">
+    <div className="font-sans bg-gradient-to-b from-cream to-cream/90 relative min-h-screen">
       {/* Header + Navbar */}
       <HeaderNavbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -72,46 +45,166 @@ export default function CustomerCarePage() {
         ></div>
       )}
 
-      {/* Hero Section */}
+      {/* Page Header */}
       <header className="bg-brown text-cream text-center py-16 shadow-lg">
-        <h1 className="text-5xl font-extrabold mb-2 tracking-wide">Customer Care</h1>
+        <h1 className="text-5xl font-extrabold mb-2 tracking-wide">Settings</h1>
         <p className="text-lg max-w-2xl mx-auto text-cream/80">
-          Welcome to Rakshapeeth’s Customer Care page. Find solutions to common questions and get instant assistance.
+          Customize your profile, notifications, privacy, and app preferences
         </p>
       </header>
 
-      {/* FAQ Section */}
-      <main className="max-w-4xl mx-auto px-6 py-16">
-        <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
-            >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-brown text-lg focus:outline-none"
-              >
-                {faq.question}
-                <span
-                  className={`text-xl transform transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </button>
-              {openIndex === index && (
-                <div className="px-6 pb-4 text-brown/80 border-t border-brown/20">
-                  {faq.answer}
-                </div>
-              )}
+      {/* Main Content */}
+      <main className="max-w-5xl mx-auto px-6 py-16 space-y-12">
+        {/* Profile Settings */}
+        <section className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+          <h2 className="text-2xl font-bold text-brown mb-4">Profile Settings</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            
+            <div>
+              <label className="font-semibold text-brown">Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              />
             </div>
-          ))}
-        </div>
+            <div>
+              <label className="font-semibold text-brown">Mobile Number</label>
+              <input
+                type="text"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              />
+            </div>
+            <div>
+              <label className="font-semibold text-brown">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              />
+            </div>
+            <div>
+              <label className="font-semibold text-brown">Change Password</label>
+              <input
+                type="password"
+                placeholder="New Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              />
+            </div>
+            
+          </div>
+        </section>
+
+        {/* Notification Settings */}
+        <section className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+          <h2 className="text-2xl font-bold text-brown mb-4">Notification Settings</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="font-semibold text-brown">Notification Channels</label>
+              <div className="flex space-x-4 mt-1">
+                {["sms", "email"].map((ch) => (
+                  <label key={ch} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={notificationChannels[ch]}
+                      onChange={() =>
+                        setNotificationChannels({
+                          ...notificationChannels,
+                          [ch]: !notificationChannels[ch],
+                        })
+                      }
+                    />
+                    <span className="capitalize">{ch}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <label className="font-semibold text-brown">Notification Language</label>
+              <select
+                value={notificationLanguage}
+                onChange={(e) => setNotificationLanguage(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              >
+                <option>English</option>
+                <option>Hindi</option>
+                
+              </select>
+            </div>
+          </div>
+        </section>
+
+        {/* Privacy & Security */}
+        <section className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+          <h2 className="text-2xl font-bold text-brown mb-4">Privacy & Security</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label className="font-semibold text-brown">Who can view profile</label>
+              <select
+                value={profileVisibility}
+                onChange={(e) => setProfileVisibility(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              >
+                <option>Everyone</option>
+                <option>Only Me</option>
+                
+              </select>
+            </div>
+            <div>
+              <label className="font-semibold text-brown">Who can contact me</label>
+              <select
+                value={contactPermissions}
+                onChange={(e) => setContactPermissions(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              >
+                <option>Everyone</option>
+                <option>Only Me</option>
+                
+              </select>
+            </div>
+          </div>
+        </section>
+
+        {/* Language & Accessibility */}
+        <section className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+          <h2 className="text-2xl font-bold text-brown mb-4">Language & Accessibility</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label className="font-semibold text-brown">App Language</label>
+              <select
+                value={appLanguage}
+                onChange={(e) => setAppLanguage(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              >
+                <option>English</option>
+                <option>Hindi</option>
+              </select>
+            </div>
+            <div>
+              <label className="font-semibold text-brown">Regional Date/Time Formats</label>
+              <select
+                value={dateFormat}
+                onChange={(e) => setDateFormat(e.target.value)}
+                className="w-full mt-1 p-2 border rounded-lg"
+              >
+                <option>DD/MM/YYYY</option>
+                <option>MM/DD/YYYY</option>
+                <option>YYYY/MM/DD</option>
+              </select>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
     </div>
   );
 }
+

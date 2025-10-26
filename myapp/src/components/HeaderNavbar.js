@@ -79,7 +79,7 @@ export default function HeaderNavbar({ sidebarOpen, setSidebarOpen }) {
             <Link to="/about" className="font-semibold hover:text-cream-200 transition duration-300">
               About
             </Link>
-            <Link to="/customer-care" className="font-semibold hover:text-cream-200 transition duration-300">
+            <Link to="/CustomerCare" className="font-semibold hover:text-cream-200 transition duration-300">
               Customer Care
             </Link>
             <Link to="/ContactUs" className="font-semibold hover:text-cream-200 transition duration-300">

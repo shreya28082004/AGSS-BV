@@ -10,6 +10,7 @@ import GrPage from "./pages/GuardReg";
 import ContactUs from "./pages/ContactUs";
 import PreVisit from "./pages/PreVisit";
 import Setting from "./pages/Setting";
+import CustomerCare from "./pages/CustomerCare";
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/pre-visit" element={<PreVisit />} />
         <Route path="/settings" element={<Setting />} />
+        <Route path="/CustomerCare" element={<CustomerCare />} />        
 
 
       </Routes>
